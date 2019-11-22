@@ -1,4 +1,4 @@
-package com.love.am;
+package com.love.amei;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
