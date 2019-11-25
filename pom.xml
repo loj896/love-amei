@@ -13,6 +13,7 @@
         <module>serve-eureka</module>
         <module>serve-sys</module>
         <module>serve-auth</module>
+        <module>serve-zuul</module>
     </modules>
 
     <name>love-amei</name>

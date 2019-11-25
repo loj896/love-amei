@@ -1,18 +1,15 @@
-package com.love.amei.controller;
+package com.love.amei;
 
-import com.love.amei.feign.UserFeignService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /***
  *                    .::::. 
  *                  .::::::::. 
  *                 :::::::::::        @author liuhai
- *             ..:::::::::::'         @date 2019-11-22 17:18
+ *             ..:::::::::::'         @date 2019-11-25 11:17
  *           '::::::::::::'           @description
  *             .:::::::::: 
  *        '::::::::::::::.. 
@@ -28,16 +25,12 @@ import javax.annotation.Resource;
  * ```` ':.          ':::::::::'                  ::::.. 
  *                    '.:::::'                    ':'````.. 
  */
-@RestController
-@RequestMapping("/auth/user")
-public class UserController {
+@EnableZuulProxy        //Zuul 网关
+@EnableEurekaClient     //Eureka 客户端
+@SpringBootApplication
+public class ZuulApplication {
 
-    @Resource
-    private UserFeignService userFeignService;
-
-    @GetMapping("/hello/{name}")
-    public String hello(@PathVariable String name){
-        //return userFeignService.hello(name);
-        return "hello "+name+" this is serve-auth";
+    public static void main(String[] args) {
+        SpringApplication.run(ZuulApplication.class, args);
     }
 }
