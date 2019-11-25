@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: serve-config
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        # 本地配置
+        native:
+          search-locations: classpath:config/
+      # 远程仓库配置
+#      label: master # 配置仓库的分支
+#      server:
+#        git:
+#          uri: https://github.com/xx/spring-cloud-config # 配置Git仓库地址，如果用Github需要加.git，如果用Gitlab则不需要
+#          search-paths: respo # 配置仓库路径
+#          username: # 访问Git仓库的账号
+#          password: # 访问Git仓库的密码
+
+server:
+  port: 9603
+
+eureka:
+  client:
+    service-url:
+      # Eureka注册中心连接地址
+      # 如果注册中心地址配置的域名，这里使用 http://域名/eureka/ 格式
+      defaultZone: http://localhost:9601/eureka/
+

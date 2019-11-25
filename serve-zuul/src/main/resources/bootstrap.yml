@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      uri: http://localhost:9603
+      name: application-zuul
+      profile: dev
