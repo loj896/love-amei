@@ -1,16 +1,13 @@
-package com.love.amei;
+package com.love.amei.feign.fallback;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import com.love.amei.feign.UserFeignService;
+import org.springframework.stereotype.Component;
 
 /***
  *                    .::::. 
  *                  .::::::::. 
  *                 :::::::::::        @author liuhai
- *             ..:::::::::::'         @date 2019-11-22 17:15
+ *             ..:::::::::::'         @date 2019-11-25 9:42
  *           '::::::::::::'           @description
  *             .:::::::::: 
  *        '::::::::::::::.. 
@@ -26,13 +23,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * ```` ':.          ':::::::::'                  ::::.. 
  *                    '.:::::'                    ':'````.. 
  */
-@EnableDiscoveryClient   //服务消费者
-@EnableFeignClients      //服务通信，熔断器
-@EnableHystrixDashboard  //熔断监控
-@SpringBootApplication
-public class AuthApplication {
+@Component
+public class UserFeignServiceFallImpl implements UserFeignService {
 
-    public static void main(String[] args) {
-        SpringApplication.run(AuthApplication.class, args);
+    @Override
+    public String hello(String name) {
+        return "hello "+ name+" this is serve-auth , request error";
     }
 }
