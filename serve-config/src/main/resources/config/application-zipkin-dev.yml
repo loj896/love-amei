@@ -3,9 +3,13 @@ spring:
     name: serve-zipkin
   main:
     allow-bean-definition-overriding: true
+  boot:
+    admin:
+      client:
+        url: http://localhost:9605
 
 server:
-  port: 9411 # 9604
+  port: 9604
 
 eureka:
   client:
