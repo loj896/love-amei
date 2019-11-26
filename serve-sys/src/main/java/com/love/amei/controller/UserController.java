@@ -1,6 +1,6 @@
 package com.love.amei.controller;
 
-import com.love.amei.dto.LoginDto;
+import com.love.amei.dto.user.LoginDto;
 import com.love.amei.model.user.User;
 import com.love.amei.service.UserService;
 import com.love.amei.util.CommonResult;
@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /***
  *                    .::::. 
@@ -36,7 +38,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/sys/user")
 public class UserController {
 
-    @Autowired
+    @Resource
     private UserService userService;
 
     @GetMapping("/hello/{name}")

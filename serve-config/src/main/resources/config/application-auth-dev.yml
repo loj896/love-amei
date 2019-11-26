@@ -7,6 +7,28 @@ spring:
     admin:
       client:
         url: @admin.url@
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.105.161.199:3306/mydb?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    username: @db.user@
+    password: @db.pwd@
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+mybatis-plus:
+  global-config:
+    db-config:
+      db-type: mysql
+      id-type: uuid
+      field-strategy: not_null
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      table-underline: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
 
 server:
   port: @serve.auth.port@

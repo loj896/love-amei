@@ -1,6 +1,9 @@
 package com.love.amei.feign.fallback;
 
+import com.love.amei.dto.user.LoginDto;
 import com.love.amei.feign.UserFeignService;
+import com.love.amei.util.CommonResult;
+import com.love.amei.util.Rest;
 import org.springframework.stereotype.Component;
 
 /***
@@ -29,5 +32,10 @@ public class UserFeignServiceFallImpl implements UserFeignService {
     @Override
     public String hello(String name) {
         return "hello "+ name+" this is serve-auth , request error";
+    }
+
+    @Override
+    public CommonResult getUser(LoginDto loginDto) {
+        return Rest.fail("查询失败，网路异常");
     }
 }

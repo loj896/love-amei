@@ -1,9 +1,9 @@
-package com.love.amei.service.impl;
+package com.love.amei.service.user.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.love.amei.dao.user.UserMapper;
 import com.love.amei.model.user.User;
-import com.love.amei.service.UserDaoService;
+import com.love.amei.service.user.UserDaoService;
 import org.springframework.stereotype.Service;
 
 /***

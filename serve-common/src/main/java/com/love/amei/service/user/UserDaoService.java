@@ -1,4 +1,4 @@
-package com.love.amei.service;
+package com.love.amei.service.user;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.love.amei.model.user.User;

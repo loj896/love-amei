@@ -15,20 +15,11 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <!--Eureka-->
+        <!--引入公共模块-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>
-        <!--配置客户端依赖-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
-        <!--zipkin-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
+            <groupId>com.love.amei</groupId>
+            <artifactId>serve-common</artifactId>
+            <version>1.0</version>
         </dependency>
         <!--调用其它服务，内置了 Hystrix 熔断器-->
         <dependency>
@@ -40,10 +31,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
         </dependency>
-        <!--admin client-->
+        <!-- shiro -->
         <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
         </dependency>
     </dependencies>
 

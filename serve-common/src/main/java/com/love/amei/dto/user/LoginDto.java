@@ -1,4 +1,4 @@
-package com.love.amei.dto;
+package com.love.amei.dto.user;
 
 import com.love.amei.util.group.SelGroup;
 import io.swagger.annotations.ApiModel;

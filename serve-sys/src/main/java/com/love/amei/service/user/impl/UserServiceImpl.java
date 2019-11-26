@@ -1,9 +1,9 @@
-package com.love.amei.service.impl;
+package com.love.amei.service.user.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.love.amei.dto.LoginDto;
+import com.love.amei.dto.user.LoginDto;
 import com.love.amei.model.user.User;
-import com.love.amei.service.UserDaoService;
+import com.love.amei.service.user.UserDaoService;
 import com.love.amei.service.UserService;
 import org.springframework.stereotype.Service;
 

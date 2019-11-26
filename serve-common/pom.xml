@@ -53,6 +53,17 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.1.0</version>
         </dependency>
+        <!--swagger2-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.5.0</version>
+        </dependency>
         <!--fastjson 格式化数据-->
         <dependency>
             <groupId>com.alibaba</groupId>

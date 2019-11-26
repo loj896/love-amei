@@ -1,6 +1,6 @@
 package com.love.amei.service;
 
-import com.love.amei.dto.LoginDto;
+import com.love.amei.dto.user.LoginDto;
 import com.love.amei.model.user.User;
 
 /***
