@@ -5,6 +5,6 @@ spring:
     active: native
   cloud:
     config:
-      uri: http://localhost:9603
+      uri: @config.uri@ #http://localhost:9602
       name: application-zipkin
-      profile: dev
+      profile: @current.active.profile@

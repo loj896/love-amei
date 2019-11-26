@@ -3,6 +3,6 @@ spring:
     active: native
   cloud:
     config:
-      uri: http://localhost:9603
-      name: application-amdin
-      profile: dev
+      uri: @config.uri@
+      name: application-admin
+      profile: @current.active.profile@

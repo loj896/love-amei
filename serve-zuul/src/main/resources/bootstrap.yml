@@ -3,6 +3,6 @@ spring:
     active: native
   cloud:
     config:
-      uri: http://localhost:9603
+      uri: @config.uri@
       name: application-zuul
-      profile: dev
+      profile: @current.active.profile@

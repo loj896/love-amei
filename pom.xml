@@ -31,7 +31,9 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <zipkin.version>2.10.1</zipkin.version>
-        <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
+        <spring-boot-admin.version>2.1.5</spring-boot-admin.version>
+        <!--打包时跳过测试类-->
+        <maven.test.skip>true</maven.test.skip>
     </properties>
 
     <dependencies>
@@ -83,6 +85,12 @@
     </dependencyManagement>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -90,6 +98,44 @@
             </plugin>
         </plugins>
     </build>
+
+    <!--多环境配置-->
+    <profiles>
+        <!--开发环境-->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <current.active.profile>dev</current.active.profile>
+                <eureka.port>9601</eureka.port>
+                <config.port>9602</config.port>
+                <zipkin.port>9603</zipkin.port>
+                <admin.port>9604</admin.port>
+                <serve.sys.port>9701</serve.sys.port>
+                <serve.auth.port>9801</serve.auth.port>
+                <serve.zuul.port>9901</serve.zuul.port>
+                <eureka.url>http://localhost:9601/eureka/</eureka.url>
+                <config.uri>http://localhost:9602</config.uri>
+                <zipkin.url>http://localhost:9603</zipkin.url>
+                <admin.url>http://localhost:9604</admin.url>
+
+                <mail.service.url>http://localhost:6823</mail.service.url>
+                <plan.service.url>http://localhost:6824</plan.service.url>
+                <sys.service.url>http://localhost:6825</sys.service.url>
+                <security.user.name>amei</security.user.name>
+                <security.user.pwd>ameiPWD123</security.user.pwd>
+                <db.user>amei</db.user>
+                <db.pwd>Loj896)(</db.pwd>
+                <mongodb.user>loj</mongodb.user>
+                <mongodb.pwd>lojPWD123</mongodb.pwd>
+                <redis.host>47.105.161.199</redis.host>
+                <redis.port>6379</redis.port>
+                <redis.pwd>lojPWD123)(</redis.pwd>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
 
 
 </project>

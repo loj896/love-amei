@@ -2,24 +2,24 @@ spring:
   application:
     name: serve-admin
   zipkin:
-    base-url: http://localhost:9604
+    base-url: @zipkin.url@
 
 server:
-  port: 9605
+  port: @admin.port@
 
 eureka:
   client:
     service-url:
       # Eureka注册中心连接地址
       # 如果注册中心地址配置的域名，这里使用 http://域名/eureka/ 格式
-      defaultZone: http://localhost:9601/eureka/
+      defaultZone: @eureka.url@
 
 # admin
 management:
   endpoint:
     health:
-      show-details: always
+      show-details: ALWAYS
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: "*" # health,info

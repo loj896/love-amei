@@ -3,7 +3,7 @@ spring:
     name: serve-eureka
 
 server:
-  port: 9601
+  port: @eureka.port@
 
 eureka:
   instance:
@@ -12,8 +12,8 @@ eureka:
   server:
     wait-time-in-ms-when-sync-empty: 0
     enable-self-preservation: false
-    #剔除过期实例时间
-    eviction-interval-timer-in-ms: 3000
+    #剔除过期实例时间 30s
+    eviction-interval-timer-in-ms: 30000
   client:
     # 是否将自己注册到注册中心。因为项目中只有一个注册中心就是自己，所以无需再注册
     register-with-eureka: false

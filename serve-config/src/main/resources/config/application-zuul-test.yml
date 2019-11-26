@@ -2,21 +2,21 @@ spring:
   application:
     name: serve-zuul
   zipkin:
-    base-url: http://localhost:9604
+    base-url: @zipkin.url@
   boot:
     admin:
       client:
-        url: http://localhost:9605
+        url: @admin.url@
 
 server:
-  port: 9902
+  port: @serve.zuul.port@
 
 eureka:
   client:
     service-url:
       # Eureka注册中心连接地址
       # 如果注册中心地址配置的域名，这里使用 http://域名/eureka/ 格式
-      defaultZone: http://localhost:9601/eureka/
+      defaultZone: @eureka.url@
 
 zuul:
   #strip-prefix: false
