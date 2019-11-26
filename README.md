@@ -26,4 +26,7 @@ love amei
 | 9 | openfeign | 2.1.1.RELEASE |  |
 | 10 | hystrix | 2.1.1.RELEASE |  |
 | 11 | zuul | 2.1.1.RELEASE |  |
+| 12 | mysql | 8.0.11 |  |
+| 13 | mybatis plus | 3.1.0 |  |
+| 14 | swagger | 2.5.0 |  |
 

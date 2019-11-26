@@ -15,26 +15,24 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <!--Eureka-->
+        <!--引入公共模块-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <groupId>com.love.amei</groupId>
+            <artifactId>serve-common</artifactId>
+            <version>1.0</version>
         </dependency>
-        <!--配置客户端依赖-->
+        <!--swagger2-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.5.0</version>
         </dependency>
-        <!--zipkin-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.5.0</version>
         </dependency>
-        <!--admin client-->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-        </dependency>
+
     </dependencies>
 
     <build>

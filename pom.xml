@@ -17,6 +17,7 @@
         <module>serve-config</module>
         <module>serve-zipkin</module>
         <module>serve-admin</module>
+        <module>serve-common</module>
     </modules>
 
     <name>love-amei</name>
@@ -118,18 +119,8 @@
                 <zipkin.url>http://localhost:9603</zipkin.url>
                 <admin.url>http://localhost:9604</admin.url>
 
-                <mail.service.url>http://localhost:6823</mail.service.url>
-                <plan.service.url>http://localhost:6824</plan.service.url>
-                <sys.service.url>http://localhost:6825</sys.service.url>
-                <security.user.name>amei</security.user.name>
-                <security.user.pwd>ameiPWD123</security.user.pwd>
                 <db.user>amei</db.user>
-                <db.pwd>Loj896)(</db.pwd>
-                <mongodb.user>loj</mongodb.user>
-                <mongodb.pwd>lojPWD123</mongodb.pwd>
-                <redis.host>47.105.161.199</redis.host>
-                <redis.port>6379</redis.port>
-                <redis.pwd>lojPWD123)(</redis.pwd>
+                <db.pwd>PWD</db.pwd>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
