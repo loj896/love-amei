@@ -29,4 +29,5 @@ love amei
 | 12 | mysql | 8.0.11 |  |
 | 13 | mybatis plus | 3.1.0 |  |
 | 14 | swagger | 2.5.0 |  |
+| 15 | shiro | 1.4.0 |  |
 

@@ -1,19 +1,16 @@
-package com.love.amei.service.user.impl;
+package com.love.amei.service.auth.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.love.amei.dto.user.LoginDto;
-import com.love.amei.model.user.User;
-import com.love.amei.service.user.UserDaoService;
-import com.love.amei.service.user.UserService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.love.amei.dao.auth.AuthMapper;
+import com.love.amei.model.auth.Auth;
+import com.love.amei.service.auth.AuthDaoService;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /***
  *                    .::::. 
  *                  .::::::::. 
  *                 :::::::::::        @author liuhai
- *             ..:::::::::::'         @date 2019-11-26 15:50
+ *             ..:::::::::::'         @date 2019-11-27 10:11
  *           '::::::::::::'           @description
  *             .:::::::::: 
  *        '::::::::::::::.. 
@@ -30,16 +27,5 @@ import javax.annotation.Resource;
  *                    '.:::::'                    ':'````.. 
  */
 @Service
-public class UserServiceImpl implements UserService {
-
-    @Resource
-    private UserDaoService userDaoService;
-
-    @Override
-    public User getUserByPwdAndName(LoginDto loginDto) {
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("user_name", loginDto.getUserName());
-        wrapper.eq("password", loginDto.getPassword());
-        return userDaoService.getOne(wrapper);
-    }
+public class AuthDaoServiceImpl extends ServiceImpl<AuthMapper, Auth> implements AuthDaoService {
 }

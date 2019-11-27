@@ -2,12 +2,11 @@ package com.love.amei.controller;
 
 import com.love.amei.dto.user.LoginDto;
 import com.love.amei.model.user.User;
-import com.love.amei.service.UserService;
+import com.love.amei.service.user.UserService;
 import com.love.amei.util.CommonResult;
 import com.love.amei.util.Rest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

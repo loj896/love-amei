@@ -1,13 +1,13 @@
-package com.love.amei.service;
+package com.love.amei.service.auth;
 
-import com.love.amei.dto.user.LoginDto;
-import com.love.amei.model.user.User;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.love.amei.model.auth.Auth;
 
 /***
  *                    .::::. 
  *                  .::::::::. 
  *                 :::::::::::        @author liuhai
- *             ..:::::::::::'         @date 2019-11-26 15:48
+ *             ..:::::::::::'         @date 2019-11-27 10:10
  *           '::::::::::::'           @description
  *             .:::::::::: 
  *        '::::::::::::::.. 
@@ -23,12 +23,5 @@ import com.love.amei.model.user.User;
  * ```` ':.          ':::::::::'                  ::::.. 
  *                    '.:::::'                    ':'````.. 
  */
-public interface UserService {
-
-    /**
-     * 根据用户名和密码获取用户信息
-     * @param loginDto
-     * @return
-     */
-    User getUserByPwdAndName(LoginDto loginDto);
+public interface AuthDaoService extends IService<Auth> {
 }

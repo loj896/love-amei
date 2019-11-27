@@ -1,7 +1,7 @@
-package com.love.amei.feign;
+package com.love.amei.feign.sys;
 
 import com.love.amei.dto.user.LoginDto;
-import com.love.amei.feign.fallback.UserFeignServiceFallImpl;
+import com.love.amei.feign.sys.fallback.UserFeignServiceFallImpl;
 import com.love.amei.util.CommonResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.validation.annotation.Validated;

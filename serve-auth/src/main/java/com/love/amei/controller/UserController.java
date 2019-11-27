@@ -1,7 +1,7 @@
 package com.love.amei.controller;
 
 import com.love.amei.dto.user.LoginDto;
-import com.love.amei.feign.UserFeignService;
+import com.love.amei.feign.sys.UserFeignService;
 import com.love.amei.util.CommonResult;
 import com.love.amei.util.Rest;
 import io.swagger.annotations.Api;

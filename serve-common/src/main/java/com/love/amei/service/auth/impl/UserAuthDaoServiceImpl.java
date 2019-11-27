@@ -1,19 +1,19 @@
-package com.love.amei.service.user.impl;
+package com.love.amei.service.auth.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.love.amei.dto.user.LoginDto;
-import com.love.amei.model.user.User;
-import com.love.amei.service.user.UserDaoService;
-import com.love.amei.service.user.UserService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.love.amei.dao.auth.UserAuthRelMapper;
+import com.love.amei.dto.auth.UserAuthDto;
+import com.love.amei.model.auth.UserAuthRel;
+import com.love.amei.service.auth.UserAuthDaoService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import java.util.List;
 
 /***
  *                    .::::. 
  *                  .::::::::. 
  *                 :::::::::::        @author liuhai
- *             ..:::::::::::'         @date 2019-11-26 15:50
+ *             ..:::::::::::'         @date 2019-11-27 10:13
  *           '::::::::::::'           @description
  *             .:::::::::: 
  *        '::::::::::::::.. 
@@ -30,16 +30,10 @@ import javax.annotation.Resource;
  *                    '.:::::'                    ':'````.. 
  */
 @Service
-public class UserServiceImpl implements UserService {
-
-    @Resource
-    private UserDaoService userDaoService;
+public class UserAuthDaoServiceImpl extends ServiceImpl<UserAuthRelMapper, UserAuthRel> implements UserAuthDaoService {
 
     @Override
-    public User getUserByPwdAndName(LoginDto loginDto) {
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("user_name", loginDto.getUserName());
-        wrapper.eq("password", loginDto.getPassword());
-        return userDaoService.getOne(wrapper);
+    public List<UserAuthDto> getUserAuth(String userId) {
+        return this.baseMapper.getUserAuth(userId);
     }
 }

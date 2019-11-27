@@ -1,16 +1,14 @@
-package com.love.amei.feign.fallback;
+package com.love.amei.service.auth;
 
-import com.love.amei.dto.user.LoginDto;
-import com.love.amei.feign.UserFeignService;
-import com.love.amei.util.CommonResult;
-import com.love.amei.util.Rest;
-import org.springframework.stereotype.Component;
+import com.love.amei.dto.auth.UserAuthDto;
+
+import java.util.List;
 
 /***
  *                    .::::. 
  *                  .::::::::. 
  *                 :::::::::::        @author liuhai
- *             ..:::::::::::'         @date 2019-11-25 9:42
+ *             ..:::::::::::'         @date 2019-11-27 10:33
  *           '::::::::::::'           @description
  *             .:::::::::: 
  *        '::::::::::::::.. 
@@ -26,16 +24,20 @@ import org.springframework.stereotype.Component;
  * ```` ':.          ':::::::::'                  ::::.. 
  *                    '.:::::'                    ':'````.. 
  */
-@Component
-public class UserFeignServiceFallImpl implements UserFeignService {
+public interface UserAuthService {
 
-    @Override
-    public String hello(String name) {
-        return "hello "+ name+" this is serve-auth , request error";
-    }
+    /**
+     * 添加用户权限
+     * @param authIds
+     * @param userId
+     * @return
+     */
+    boolean addUserAuth(List<String> authIds, String userId);
 
-    @Override
-    public CommonResult getUser(LoginDto loginDto) {
-        return Rest.fail("查询失败，网路异常");
-    }
+    /**
+     * 查询用户权限
+     * @param userId
+     * @return
+     */
+    List<UserAuthDto> getUserAuth(String userId);
 }
