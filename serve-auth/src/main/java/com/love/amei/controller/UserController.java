@@ -92,7 +92,7 @@ public class UserController {
             if(!CollectionUtils.isEmpty(authDtoList)){
                 List<String> auths = new ArrayList<>();
                 for (UserRoleDto authDto : authDtoList){
-                    //auths.add(authDto.getAuthCode());
+                    auths.add(null);
                 }
             }
             return Rest.successWithData("/index");
