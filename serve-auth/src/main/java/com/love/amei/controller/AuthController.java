@@ -1,7 +1,7 @@
 package com.love.amei.controller;
 
 import com.love.amei.dto.auth.AddAuthDto;
-import com.love.amei.feign.sys.AuthFeignService;
+import com.love.amei.feign.SysFeignService;
 import com.love.amei.util.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -40,17 +40,17 @@ import java.util.List;
 public class AuthController {
 
     @Autowired
-    private AuthFeignService authService;
+    private SysFeignService sysFeignService;
 
     @ApiOperation(value = "添加权限")
     @PostMapping("/addAuth")
     public CommonResult addAuth(@RequestBody @Validated List<AddAuthDto> authDtoList){
-        return authService.addAuth(authDtoList);
+        return sysFeignService.addAuth(authDtoList);
     }
 
     @ApiOperation(value = "查询用户权限")
     @PostMapping("/getUserAuth")
     public CommonResult getUserAuth(@RequestBody @Validated String userId){
-        return authService.getUserAuth(userId);
+        return sysFeignService.getUserAuth(userId);
     }
 }

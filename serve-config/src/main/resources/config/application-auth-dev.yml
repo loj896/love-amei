@@ -1,8 +1,6 @@
 spring:
   application:
     name: serve-auth
-  main:
-    allow-bean-definition-overriding: true
   zipkin:
     base-url: @zipkin.url@
   boot:

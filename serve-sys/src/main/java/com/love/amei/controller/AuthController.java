@@ -2,7 +2,7 @@ package com.love.amei.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.love.amei.dto.auth.AddAuthDto;
-import com.love.amei.dto.auth.UserAuthDto;
+import com.love.amei.dto.user.UserRoleDto;
 import com.love.amei.service.auth.AuthService;
 import com.love.amei.service.auth.UserAuthService;
 import com.love.amei.util.CommonResult;
@@ -61,7 +61,7 @@ public class AuthController {
     @ApiOperation(value = "查询用户权限")
     @PostMapping("/getUserAuth")
     public CommonResult getUserAuth(@RequestBody @Validated String userId){
-        List<UserAuthDto> authDtoList = userAuthService.getUserAuth(userId);
+        List<UserRoleDto> authDtoList = userAuthService.getUserAuth(userId);
         if(CollectionUtils.isEmpty(authDtoList)){
             return Rest.fail("未查询到用户权限信息");
         }

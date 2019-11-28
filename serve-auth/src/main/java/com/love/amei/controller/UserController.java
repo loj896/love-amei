@@ -1,7 +1,9 @@
 package com.love.amei.controller;
 
+import com.love.amei.dto.user.UserRoleDto;
 import com.love.amei.dto.user.LoginDto;
-import com.love.amei.feign.sys.UserFeignService;
+import com.love.amei.feign.SysFeignService;
+import com.love.amei.model.user.User;
 import com.love.amei.util.CommonResult;
 import com.love.amei.util.Rest;
 import io.swagger.annotations.Api;
@@ -14,10 +16,13 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /***
  *                    .::::. 
@@ -41,11 +46,11 @@ import javax.annotation.Resource;
  */
 @Api(tags = "用户接口", description = "用户管理")
 @RestController
-@RequestMapping("/auth/user")
+@RequestMapping("/sys/user")
 public class UserController {
 
     @Resource
-    private UserFeignService userFeignService;
+    private SysFeignService sysFeignService;
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -64,7 +69,7 @@ public class UserController {
     @ApiOperation(value = "根据用户名和密码查询用户信息")
     @PostMapping("/getUser")
     public CommonResult getUser(@RequestBody @Validated LoginDto loginDto){
-        return userFeignService.getUser(loginDto);
+        return sysFeignService.getUser(loginDto);
     }
 
     @ApiOperation(value = "用户登录")
@@ -80,6 +85,16 @@ public class UserController {
             subject.login(token);
             info = String.valueOf(subject.isAuthenticated());
             model.addAttribute("info", "登录状态 ==> " + info);
+            //查询用户权限
+            User user = (User) SecurityUtils.getSubject().getPrincipal();
+            CommonResult authRest = sysFeignService.getUserAuth(user.getUserId());
+            List<UserRoleDto> authDtoList = (List<UserRoleDto>) authRest.getData();
+            if(!CollectionUtils.isEmpty(authDtoList)){
+                List<String> auths = new ArrayList<>();
+                for (UserRoleDto authDto : authDtoList){
+                    //auths.add(authDto.getAuthCode());
+                }
+            }
             return Rest.successWithData("/index");
         } catch (UnknownAccountException e) {
             e.printStackTrace();

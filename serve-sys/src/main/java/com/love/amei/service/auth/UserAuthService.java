@@ -1,6 +1,6 @@
 package com.love.amei.service.auth;
 
-import com.love.amei.dto.auth.UserAuthDto;
+import com.love.amei.dto.user.UserRoleDto;
 
 import java.util.List;
 
@@ -39,5 +39,5 @@ public interface UserAuthService {
      * @param userId
      * @return
      */
-    List<UserAuthDto> getUserAuth(String userId);
+    List<UserRoleDto> getUserAuth(String userId);
 }

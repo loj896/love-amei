@@ -40,7 +40,7 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean filterFactoryBean = new ShiroFilterFactoryBean();
         filterFactoryBean.setSecurityManager(securityManager);
-        filterFactoryBean.setLoginUrl("/login");
+        filterFactoryBean.setLoginUrl("/sys/user/login");
 
         //自定义拦截器链
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
