@@ -1,6 +1,7 @@
 package com.love.amei.feign.fallback;
 
 import com.love.amei.dto.auth.AddAuthDto;
+import com.love.amei.dto.user.AddUserRoleDto;
 import com.love.amei.dto.user.LoginDto;
 import com.love.amei.feign.SysFeignService;
 import com.love.amei.util.CommonResult;
@@ -49,6 +50,16 @@ public class SysFeignServiceFallImpl implements SysFeignService {
 
     @Override
     public CommonResult getUserAuth(String userId) {
+        return Rest.fail("查询失败，网路异常");
+    }
+
+    @Override
+    public CommonResult addUserRole(List<AddUserRoleDto> userRoleDtoList) {
+        return Rest.fail("查询失败，网路异常");
+    }
+
+    @Override
+    public CommonResult getUserRole(String userId) {
         return Rest.fail("查询失败，网路异常");
     }
 }

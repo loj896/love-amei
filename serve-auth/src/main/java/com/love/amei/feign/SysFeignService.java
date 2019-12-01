@@ -1,6 +1,7 @@
 package com.love.amei.feign;
 
 import com.love.amei.dto.auth.AddAuthDto;
+import com.love.amei.dto.user.AddUserRoleDto;
 import com.love.amei.dto.user.LoginDto;
 import com.love.amei.feign.fallback.SysFeignServiceFallImpl;
 import com.love.amei.util.CommonResult;
@@ -43,19 +44,35 @@ public interface SysFeignService {
     CommonResult getUser(@RequestBody @Validated LoginDto loginDto);
 
     /**
+     * 查询用户权限
+     * @param userId
+     * @return
+     */
+    @PostMapping("/sys/user/getUserAuth")
+    CommonResult getUserAuth(@RequestBody @Validated String userId);
+
+    /**
+     * 新增用户角色
+     * @param userRoleDtoList
+     * @return
+     */
+    @PostMapping("/sys/user/addUserRole")
+    CommonResult addUserRole(@RequestBody @Validated List<AddUserRoleDto> userRoleDtoList);
+
+    /**
+     * 查询用户角色
+     * @param userId
+     * @return
+     */
+    @PostMapping("/sys/user/getUserRole")
+    CommonResult getUserRole(@RequestBody @Validated String userId);
+
+    /**
      * 添加权限
      * @param authDtoList
      * @return
      */
     @PostMapping("/sys/auth/addAuth")
     CommonResult addAuth(@RequestBody @Validated List<AddAuthDto> authDtoList);
-
-    /**
-     * 查询用户权限
-     * @param userId
-     * @return
-     */
-    @PostMapping("/sys/auth/getUserAuth")
-    CommonResult getUserAuth(@RequestBody @Validated String userId);
 
 }

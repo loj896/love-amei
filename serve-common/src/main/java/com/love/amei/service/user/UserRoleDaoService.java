@@ -29,9 +29,9 @@ import java.util.List;
 public interface UserRoleDaoService extends IService<UserRoleRel> {
 
     /**
-     * 根据用户ID查询用户权限
+     * 根据用户ID查询用户拥有的角色
      * @param userId
      * @return
      */
-    List<UserRoleDto> getUserAuth(String userId);
+    List<UserRoleDto> getUserRole(String userId);
 }

@@ -1,11 +1,6 @@
-package com.love.amei.service.user.impl;
+package com.love.amei.service.role;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.love.amei.dao.user.UserRoleRelMapper;
-import com.love.amei.dto.user.UserRoleDto;
-import com.love.amei.model.user.UserRoleRel;
-import com.love.amei.service.user.UserRoleDaoService;
-import org.springframework.stereotype.Service;
+import com.love.amei.dto.role.AddRoleDto;
 
 import java.util.List;
 
@@ -13,7 +8,7 @@ import java.util.List;
  *                    .::::. 
  *                  .::::::::. 
  *                 :::::::::::        @author liuhai
- *             ..:::::::::::'         @date 2019-11-27 10:13
+ *             ..:::::::::::'         @date 2019-12-01 15:53
  *           '::::::::::::'           @description
  *             .:::::::::: 
  *        '::::::::::::::.. 
@@ -29,11 +24,12 @@ import java.util.List;
  * ```` ':.          ':::::::::'                  ::::.. 
  *                    '.:::::'                    ':'````.. 
  */
-@Service
-public class UserRoleDaoServiceImpl extends ServiceImpl<UserRoleRelMapper, UserRoleRel> implements UserRoleDaoService {
+public interface RoleService {
 
-    @Override
-    public List<UserRoleDto> getUserRole(String userId) {
-        return this.baseMapper.getUserRole(userId);
-    }
+    /**
+     * 新增角色
+     * @param roleDtoList
+     * @return
+     */
+    boolean addRole(List<AddRoleDto> roleDtoList);
 }

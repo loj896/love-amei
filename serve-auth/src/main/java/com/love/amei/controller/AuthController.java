@@ -47,10 +47,4 @@ public class AuthController {
     public CommonResult addAuth(@RequestBody @Validated List<AddAuthDto> authDtoList){
         return sysFeignService.addAuth(authDtoList);
     }
-
-    @ApiOperation(value = "查询用户权限")
-    @PostMapping("/getUserAuth")
-    public CommonResult getUserAuth(@RequestBody @Validated String userId){
-        return sysFeignService.getUserAuth(userId);
-    }
 }

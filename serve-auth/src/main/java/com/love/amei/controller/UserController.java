@@ -1,5 +1,6 @@
 package com.love.amei.controller;
 
+import com.love.amei.dto.user.AddUserRoleDto;
 import com.love.amei.dto.user.UserRoleDto;
 import com.love.amei.dto.user.LoginDto;
 import com.love.amei.feign.SysFeignService;
@@ -70,6 +71,24 @@ public class UserController {
     @PostMapping("/getUser")
     public CommonResult getUser(@RequestBody @Validated LoginDto loginDto){
         return sysFeignService.getUser(loginDto);
+    }
+
+    @ApiOperation(value = "查询用户权限")
+    @PostMapping("/getUserAuth")
+    public CommonResult getUserAuth(@RequestBody @Validated String userId){
+        return sysFeignService.getUserAuth(userId);
+    }
+
+    @ApiOperation(value = "添加用户角色")
+    @PostMapping("/addUserRole")
+    public CommonResult addUserRole(@RequestBody @Validated List<AddUserRoleDto> userRoleDtoList){
+        return sysFeignService.addUserRole(userRoleDtoList);
+    }
+
+    @ApiOperation(value = "查询用户角色")
+    @PostMapping("/getUserRole")
+    public CommonResult getUserRole(@RequestBody @Validated String userId){
+        return sysFeignService.getUserRole(userId);
     }
 
     @ApiOperation(value = "用户登录")
