@@ -1,14 +1,13 @@
 package com.love.amei.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.love.amei.dto.user.AddUserRoleDto;
 import com.love.amei.dto.user.LoginDto;
 import com.love.amei.dto.user.UserAuthDto;
 import com.love.amei.feign.SysFeignService;
 import com.love.amei.model.user.User;
+import com.love.amei.util.BeanConvert;
 import com.love.amei.util.CommonResult;
 import com.love.amei.util.Rest;
-import com.love.amei.util.BeanConvert;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
@@ -109,7 +108,6 @@ public class UserController {
             //查询用户权限
             User user = (User) SecurityUtils.getSubject().getPrincipal();
             CommonResult authRest = sysFeignService.getUserAuth(user.getUserId());
-            ObjectMapper mapper = new ObjectMapper();
             List<UserAuthDto> authDtoList = BeanConvert.listConvert((List<UserAuthDto>)authRest.getData(), UserAuthDto.class);
             if(!CollectionUtils.isEmpty(authDtoList)){
                 List<String> auths = new ArrayList<>();
