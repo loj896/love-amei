@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      uri: @config.uri@
+      name: application-security
+      profile: @current.active.profile@
