@@ -24,13 +24,13 @@ zuul:
   #ignored-services: serve-sys
   routes:
     # 路由名称，随意
-    serve-sys:
+    sysserve:
       # 路由地址
-      path: /api/sys/**
+      path: /sysapi/**
       # 该路由地址对应的服务名称
       serviceId: serve-sys
-    serve-auth:
-      path: /api/auth/**
+    authserve:
+      path: /authapi/**
       serviceId: serve-auth
 
 # 配置 Zuul 管理端点 /actuator/routes, /actuator/filters 可访问
