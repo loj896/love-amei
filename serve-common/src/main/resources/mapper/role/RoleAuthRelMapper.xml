@@ -11,4 +11,10 @@
     role_auth_id, role_id, auth_id, rel_state
   </sql>
 
+  <select id="getAuthByRoleId" resultType="com.love.amei.dto.role.RoleAuthDto">
+    select ra.role_id,a.auth_id,a.auth_code,a.auth_name,a.auth_pcode,a.is_leaf
+    from t_auth a left join t_role_auth_rel ra on (a.auth_id = ra.auth_id)
+    where ra.rel_state = '1' and a.auth_state = '1' and ra.role_id = #{roleId}
+  </select>
+
 </mapper>

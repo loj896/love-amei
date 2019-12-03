@@ -1,13 +1,21 @@
 package com.love.amei.config;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.love.amei.dto.role.RoleAuthDto;
+import com.love.amei.dto.user.LoginDto;
+import com.love.amei.dto.user.UserRoleDto;
+import com.love.amei.feign.SysFeignService;
 import com.love.amei.model.user.User;
-import com.love.amei.service.user.UserDaoService;
+import com.love.amei.util.BeanConvert;
+import com.love.amei.util.CommonResult;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /***
  *                    .::::. 
@@ -31,8 +39,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class AuthRealm extends AuthorizingRealm {
 
-    @Autowired
-    private UserDaoService userService;
+    @Resource
+    private SysFeignService sysFeignService;
 
     /**
      * 权限校验相关
@@ -41,7 +49,27 @@ public class AuthRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        return null;
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        User user = (User) principalCollection.getPrimaryPrincipal();
+
+        //根据用户ID查询用户角色
+        CommonResult rest = sysFeignService.getUserRole(user.getUserId());
+        List<UserRoleDto> userRoleDtoList = BeanConvert.listConvert((List<UserRoleDto>)rest.getData(),UserRoleDto.class);
+        if(!CollectionUtils.isEmpty(userRoleDtoList)){
+            List<RoleAuthDto> roleAuthDtoList = null;
+            for (UserRoleDto roleDto : userRoleDtoList){
+                authorizationInfo.addRole(roleDto.getRoleId());
+                //根据角色ID查询权限
+                rest = sysFeignService.getAuthByRoleId(roleDto.getRoleId());
+                roleAuthDtoList = BeanConvert.listConvert((List<RoleAuthDto>)rest.getData(), RoleAuthDto.class);
+                if(!CollectionUtils.isEmpty(roleAuthDtoList)){
+                    for (RoleAuthDto authDto : roleAuthDtoList){
+                        authorizationInfo.addStringPermission(authDto.getAuthCode());
+                    }
+                }
+            }
+        }
+        return authorizationInfo;
     }
 
     /**
@@ -62,10 +90,12 @@ public class AuthRealm extends AuthorizingRealm {
         String username = (String) authenticationToken.getPrincipal();
         String password = new String((char[]) authenticationToken.getCredentials());
 
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("user_name", username);
-        wrapper.eq("password", password);
-        User user = userService.getOne(wrapper);
+        LoginDto loginDto = new LoginDto();
+        loginDto.setUserName(username);
+        loginDto.setPassword(password);
+        CommonResult rest = sysFeignService.getUser(loginDto);
+        User user = BeanConvert.beanConvert(rest.getData(), User.class);
+
         if (user == null) {
             throw new UnknownAccountException();
         }

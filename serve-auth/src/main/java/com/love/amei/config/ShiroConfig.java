@@ -44,6 +44,7 @@ public class ShiroConfig {
 
         //自定义拦截器链
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+        // 配置不会被拦截的链接 顺序判断
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/login", "anon");
 
@@ -76,7 +77,7 @@ public class ShiroConfig {
     @Bean
     public SessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        sessionManager.setGlobalSessionTimeout(60 * 60 * 10); //10分钟
+        sessionManager.setGlobalSessionTimeout(1000 * 60 * 10); //10分钟
         sessionManager.setSessionDAO(new EnterpriseCacheSessionDAO());
         return sessionManager;
     }

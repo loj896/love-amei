@@ -2,6 +2,7 @@ package com.love.amei.service.role.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.love.amei.dto.role.AddRoleAuthDto;
+import com.love.amei.dto.role.RoleAuthDto;
 import com.love.amei.model.role.RoleAuthRel;
 import com.love.amei.service.role.RoleAuthDaoService;
 import com.love.amei.service.role.RoleAuthService;
@@ -52,5 +53,10 @@ public class RoleAuthServiceImpl implements RoleAuthService {
             relList.add(rel);
         }
         return roleAuthDaoService.saveBatch(relList);
+    }
+
+    @Override
+    public List<RoleAuthDto> getAuthByRoleId(String roleId) {
+        return roleAuthDaoService.getAuthByRoleId(roleId);
     }
 }

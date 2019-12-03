@@ -40,6 +40,11 @@ public interface SysFeignService {
     @GetMapping("/sys/user/hello/{name}")
     String hello(@PathVariable(name = "name") String name);
 
+    /**
+     * 根据用户名和登录密码查询用户信息
+     * @param loginDto
+     * @return
+     */
     @PostMapping("/sys/user/getUser")
     CommonResult getUser(@RequestBody @Validated LoginDto loginDto);
 
@@ -74,5 +79,13 @@ public interface SysFeignService {
      */
     @PostMapping("/sys/auth/addAuth")
     CommonResult addAuth(@RequestBody @Validated List<AddAuthDto> authDtoList);
+
+    /**
+     * 根据角色ID查询权限信息
+     * @param roleId
+     * @return
+     */
+    @PostMapping("/sys/role/getAuthByRoleId")
+    CommonResult getAuthByRoleId(@RequestBody @Validated String roleId);
 
 }

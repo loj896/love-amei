@@ -9,6 +9,7 @@ import com.love.amei.util.BeanConvert;
 import com.love.amei.util.CommonResult;
 import com.love.amei.util.Rest;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -75,8 +76,9 @@ public class UserController {
     }
 
     @ApiOperation(value = "查询用户权限")
+    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "String", paramType = "query")
     @PostMapping("/getUserAuth")
-    public CommonResult getUserAuth(@RequestBody @Validated String userId){
+    public CommonResult getUserAuth(@RequestParam(value = "userId") String userId){
         return sysFeignService.getUserAuth(userId);
     }
 
@@ -87,8 +89,9 @@ public class UserController {
     }
 
     @ApiOperation(value = "查询用户角色")
+    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "String", paramType = "query")
     @PostMapping("/getUserRole")
-    public CommonResult getUserRole(@RequestBody @Validated String userId){
+    public CommonResult getUserRole(@RequestParam(value = "userId") String userId){
         return sysFeignService.getUserRole(userId);
     }
 
@@ -105,16 +108,6 @@ public class UserController {
             subject.login(token);
             info = String.valueOf(subject.isAuthenticated());
             model.addAttribute("info", "登录状态 ==> " + info);
-            //查询用户权限
-            User user = (User) SecurityUtils.getSubject().getPrincipal();
-            CommonResult authRest = sysFeignService.getUserAuth(user.getUserId());
-            List<UserAuthDto> authDtoList = BeanConvert.listConvert((List<UserAuthDto>)authRest.getData(), UserAuthDto.class);
-            if(!CollectionUtils.isEmpty(authDtoList)){
-                List<String> auths = new ArrayList<>();
-                for (UserAuthDto authDto : authDtoList){
-                    System.out.println(authDto.getAuthName());
-                }
-            }
             return Rest.successWithData("/index");
         } catch (UnknownAccountException e) {
             e.printStackTrace();

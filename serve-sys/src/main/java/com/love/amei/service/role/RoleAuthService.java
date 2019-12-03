@@ -1,6 +1,7 @@
 package com.love.amei.service.role;
 
 import com.love.amei.dto.role.AddRoleAuthDto;
+import com.love.amei.dto.role.RoleAuthDto;
 
 import java.util.List;
 
@@ -32,4 +33,11 @@ public interface RoleAuthService {
      * @return
      */
     boolean addRoleAuth(List<AddRoleAuthDto> roleAuthDtoList);
+
+    /**
+     * 根据角色ID查询权限
+     * @param roleId
+     * @return
+     */
+    List<RoleAuthDto> getAuthByRoleId(String roleId);
 }

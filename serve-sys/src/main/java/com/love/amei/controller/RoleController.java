@@ -1,9 +1,9 @@
 package com.love.amei.controller;
 
-import com.love.amei.dto.auth.AddAuthDto;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.love.amei.dto.role.AddRoleAuthDto;
 import com.love.amei.dto.role.AddRoleDto;
-import com.love.amei.service.auth.AuthService;
+import com.love.amei.dto.role.RoleAuthDto;
 import com.love.amei.service.role.RoleAuthService;
 import com.love.amei.service.role.RoleService;
 import com.love.amei.util.CommonResult;
@@ -67,6 +67,16 @@ public class RoleController {
             return Rest.success("添加成功");
         }
         return Rest.fail("添加失败");
+    }
+
+    @ApiOperation(value = "根据角色Id查询权限")
+    @PostMapping("/getAuthByRoleId")
+    public CommonResult getAuthByRoleId(@RequestBody @Validated String roleId){
+        List<RoleAuthDto> roleAuthDtoList = roleAuthService.getAuthByRoleId(roleId);
+        if(!CollectionUtils.isEmpty(roleAuthDtoList)){
+            return Rest.successWithData(roleAuthDtoList);
+        }
+        return Rest.fail("未查询到权限信息");
     }
 
 
