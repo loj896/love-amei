@@ -18,6 +18,7 @@
         <module>serve-zipkin</module>
         <module>serve-admin</module>
         <module>serve-common</module>
+        <module>serve-security</module>
     </modules>
 
     <name>love-amei</name>
@@ -113,6 +114,7 @@
                 <admin.port>9604</admin.port>
                 <serve.sys.port>9701</serve.sys.port>
                 <serve.auth.port>9801</serve.auth.port>
+                <serve.security.port>9801</serve.security.port>
                 <serve.zuul.port>9901</serve.zuul.port>
                 <eureka.url>http://localhost:9601/eureka/</eureka.url>
                 <config.uri>http://localhost:9602</config.uri>
